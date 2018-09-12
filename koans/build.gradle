@@ -6,6 +6,14 @@ dependencies {
     compile name: 'koans'
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
 repositories {
     jcenter()
 
