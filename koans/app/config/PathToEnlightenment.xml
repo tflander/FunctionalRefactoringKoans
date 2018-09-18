@@ -2,7 +2,7 @@
 <packages>
     <package pkg="basics" name="Novice">
 
-        <suite class="AboutConsumers"/>
+        <suite class="SupplierRefactoringPuzzle"/>
 
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false" />

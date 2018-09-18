@@ -47,6 +47,4 @@ public class AboutSuppliers {
         return excitedCowSounds.get(randomSound);
     }
 
-    // TODO: would like to have the "refactor polymorphism" puzzle...
-
 }
