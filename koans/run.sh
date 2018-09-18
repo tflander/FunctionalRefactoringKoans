@@ -12,7 +12,10 @@ exitOnError()
 buildClasspath()
 {
     appDir=$1
+
     classpath=$appDir/bin
+    // classpath=./out/production/classes
+
     IFS=$'\n'
     classpath=$classpath:$appDir/config/
     for jar in $appDir/lib/* 
@@ -26,4 +29,5 @@ java -version > /dev/null 2>&1
 exitOnError 'java'
 buildClasspath "$DIR"/app
 cmd="java -Dapplication.basedir=\"$DIR\" -classpath \"$classpath\" com.sandwich.koan.runner.AppLauncher "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9""
+echo $cmd
 eval $cmd
