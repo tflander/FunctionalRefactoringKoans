@@ -2,12 +2,13 @@
 <packages>
     <package pkg="basics" name="Novice">
 
-        <suite class="AboutSuppliers"/>
+        <suite class="AboutConsumers"/>
 
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false" />
             <koan name="definitionOfKoanCompletion" displayIncompleteKoanException="false" />
         </suite>
         <suite class="AboutFunctions"/>
+        <suite class="AboutSuppliers"/>
     </package>
 </packages>
