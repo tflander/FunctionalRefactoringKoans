@@ -1,12 +1,11 @@
 package basics;
 
 import com.sandwich.koan.Koan;
-import com.sandwich.util.Assert;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import static com.sandwich.koan.constant.KoanConstants.__;
 import static com.sandwich.util.Assert.assertEquals;
@@ -88,12 +87,12 @@ public class AboutConsumers {
      * we can construct functions similar to how we construct objects.  We will dig deeper on this idea
      * when we explore currying.
      */
+    @Koan
     public void refactoredDispatcher() {
         List<Consumer<String>> deliveryMethods = Arrays.asList(
-                message -> lastTextMessage = "Awesome Text: " + __,
-                message -> lastEmailMessage = "Awesome Email: " + __,
-                message -> lastTweet = "Awesome Tweet: " + __,
-                deliver("Text", lastTextMessage)
+                deliver("Text", "lastTextMessage"),
+                deliver("Email", "lastEmailMessage"),
+                deliver("Tweet", "lastTweet")
         );
 
         deliveryMethods.forEach(deliveryMethod -> deliveryMethod.accept("message"));
@@ -103,9 +102,22 @@ public class AboutConsumers {
         assertEquals("Awesome Tweet: message", lastTweet);
     }
 
+    /**
+     * TODO: replace the placeholder with the appropriate value
+     * This is a bit hokey, but use reflection to set the field passed in.
+     * Note that lambas cannot throw checked exceptions, so we re-throw unchecked.
+     * We will explore this later.
+     */
     private Consumer<String> deliver(String deliveryMethod, String fieldName) {
         return message -> {
-            String messageToSend = "Awesome " + deliveryMethod + ": " + message;
+            String messageToSend = "Awesome " + deliveryMethod + ": " + __;
+            Class<AboutConsumers> aboutConsumersClass = AboutConsumers.class;
+            try {
+                Field declaredField = aboutConsumersClass.getDeclaredField(fieldName);
+                declaredField.set(this, messageToSend);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
         };
     }
 }
