@@ -20,8 +20,12 @@ public class AboutConsumers {
 
 
     private String lastLoggedMessage;
+    private String lastTextMessage;
+    private String lastEmailMessage;
+    private String lastTweet;
 
     /**
+     * Here is a simple example where we are sending a message to a logger
      */
     @Koan
     public void consumeLogMessage() {
@@ -32,6 +36,30 @@ public class AboutConsumers {
 
         messageLogger.accept("testing");
         assertEquals("testing", lastLoggedMessage);
+    }
+
+    /**
+     * Like our first Supplier example, the previous example uses an unnecessary level of indirection.
+     * We don't need a consumer when all we need to do is pass a string to a logger.
+     *
+     * Let's add some complication so using a supplier makes sense.
+     *
+     * Let's create a message dispatcher to dispatch messages to some group of delivery methods, e.g.
+     * text, email, and tweet.
+     */
+    @Koan
+    public void dispatchMessage() {
+        Consumer<String> messageDispatcher = message -> {
+            lastTextMessage = "Text: " + __;
+            lastEmailMessage = "Email: " + __;
+            lastTweet = "Tweet" + __;
+
+        };
+
+        messageDispatcher.accept("testing");
+        assertEquals("Text: testing", lastTextMessage);
+        assertEquals("Email: testing", lastEmailMessage);
+        assertEquals("Tweet: testing", lastTweet);
     }
 
 }
