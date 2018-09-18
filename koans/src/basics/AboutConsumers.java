@@ -52,14 +52,33 @@ public class AboutConsumers {
         Consumer<String> messageDispatcher = message -> {
             lastTextMessage = "Text: " + __;
             lastEmailMessage = "Email: " + __;
-            lastTweet = "Tweet" + __;
-
+            lastTweet = "Tweet: " + __;
         };
 
         messageDispatcher.accept("testing");
         assertEquals("Text: testing", lastTextMessage);
         assertEquals("Email: testing", lastEmailMessage);
         assertEquals("Tweet: testing", lastTweet);
+    }
+
+    /**
+     * The above example may still look a little strange, because all we really needed to do was to
+     * write a dispatcher method that takes a string and calls the three hard-coded delivery methods.
+     * Let's make the delivery methods injectable to show the power of functional programming.
+     */
+    @Koan
+    public void flexibleDispatcher() {
+        List<Consumer<String>> deliveryMethods = Arrays.asList(
+                message -> lastTextMessage = "New Text: " + message,
+                message -> lastEmailMessage = "New Email: " + message,
+                message -> lastTweet = "New Tweet: " + message
+        );
+
+        deliveryMethods.forEach(deliveryMethod -> deliveryMethod.accept("new message"));
+
+        assertEquals("New Text: new message", lastTextMessage);
+        assertEquals("New Email: new message", lastEmailMessage);
+        assertEquals("New Tweet: new message", lastTweet);
     }
 
 }
