@@ -69,9 +69,9 @@ public class AboutConsumers {
     @Koan
     public void flexibleDispatcher() {
         List<Consumer<String>> deliveryMethods = Arrays.asList(
-                message -> lastTextMessage = "New Text: " + message,
-                message -> lastEmailMessage = "New Email: " + message,
-                message -> lastTweet = "New Tweet: " + message
+                message -> lastTextMessage = "New Text: " + __,
+                message -> lastEmailMessage = "New Email: " + __,
+                message -> lastTweet = "New Tweet: " + __
         );
 
         deliveryMethods.forEach(deliveryMethod -> deliveryMethod.accept("new message"));
@@ -81,5 +81,32 @@ public class AboutConsumers {
         assertEquals("New Tweet: new message", lastTweet);
     }
 
+    /**
+     * Now that we have a simple method to dispatch a message to a list of delivery method consumers,
+     * let's refactor out the redundant code for creating the consumers.  In real life, our delivery methods
+     * might be very different, making code re-use impossible.  The purpose of this step is to show that
+     * we can construct functions similar to how we construct objects.  We will dig deeper on this idea
+     * when we explore currying.
+     */
+    public void refactoredDispatcher() {
+        List<Consumer<String>> deliveryMethods = Arrays.asList(
+                message -> lastTextMessage = "Awesome Text: " + __,
+                message -> lastEmailMessage = "Awesome Email: " + __,
+                message -> lastTweet = "Awesome Tweet: " + __,
+                deliver("Text", lastTextMessage)
+        );
+
+        deliveryMethods.forEach(deliveryMethod -> deliveryMethod.accept("message"));
+
+        assertEquals("Awesome Text: message", lastTextMessage);
+        assertEquals("Awesome Email: message", lastEmailMessage);
+        assertEquals("Awesome Tweet: message", lastTweet);
+    }
+
+    private Consumer<String> deliver(String deliveryMethod, String fieldName) {
+        return message -> {
+            String messageToSend = "Awesome " + deliveryMethod + ": " + message;
+        };
+    }
 }
 
