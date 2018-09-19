@@ -2,9 +2,10 @@
 <packages>
 
     <package pkg="concepts" name="Intermediate">
-        <suite class="CurryingRefactoringPuzzle"/>
+        <suite class="AboutComplicationAndUnfamiliarity"/>
 
         <suite class="AboutCurrying"/>
+        <suite class="CurryingRefactoringPuzzle"/>
     </package>
 
     <package pkg="basics" name="Novice">
