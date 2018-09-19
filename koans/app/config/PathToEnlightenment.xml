@@ -2,6 +2,8 @@
 <packages>
 
     <package pkg="concepts" name="Intermediate">
+        <suite class="AboutPartialFunctions"/>
+
         <suite class="AboutComplicationAndUnfamiliarity"/>
         <suite class="AboutCurrying"/>
         <suite class="CurryingRefactoringPuzzle"/>
