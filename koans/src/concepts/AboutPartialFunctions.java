@@ -24,15 +24,16 @@ public class AboutPartialFunctions {
         assertEquals(__, concat.apply("foo", "bar"));
         assertEquals(__, concatWithSpace.apply("foo", "bar"));
 
-        // Suppose we discover that we have a module that need to be able to plug in the concat operator,
+        // Suppose we discover that we need a new module that needs to be able to plug in the concat operator,
         // rather than the two strings.  We've designed things backwards from that module's perspective.
-        // We can start over with a new funtional interface, or we can leverage existing code by
-        // using a partially applied function.
+        // We can start over with a new functional interface, or we can leverage existing code by
+        // creating a partially applied function.
 
         // Now we define a function that takes two strings, and returns a function that takes
-        // a binary operator to act on those strings, then returns the applied result
+        // a binary operator to act on those strings, then returns the applied result.
+        // This is a bit of a monster.
         BiFunction<String, String, Function<BinaryOperator<String>, String>> applyOperatorToStrings =
-                (s1, s2) -> f -> f.apply(s1, s2);
+                (s1, s2) -> (f -> f.apply(s1, s2));
 
         // This function is ugly, so we probably don't want to use it directly.  If we did, it
         // looks like this:
