@@ -25,6 +25,7 @@
         <suite class="AboutCurrying"/>
         <suite class="CurryingRefactoringPuzzle"/>
         <suite class="AboutPartialFunctions"/>
+        <suite class="AboutLazyness"/>
         <suite class="AboutExceptions"/>
     </package>
 
