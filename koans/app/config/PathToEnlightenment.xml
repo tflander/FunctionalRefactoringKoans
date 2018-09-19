@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <packages>
 
-    <package pkg="basics" name="Novice">
+    <package pkg="concepts" name="Intermediate">
+        <suite class="AboutComplicationAndUnfamiliarity"/>
+        <suite class="AboutCurrying"/>
+        <suite class="CurryingRefactoringPuzzle"/>
+    </package>
 
-        <suite class="AboutJavaCore"/>
+    <package pkg="basics" name="Novice">
 
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false"/>
@@ -18,12 +22,8 @@
         <suite class="AboutRunnable"/>
         <suite class="AboutPrimitives"/>
         <suite class="AboutSam"/>
+        <suite class="AboutJavaCore"/>
     </package>
 
-    <package pkg="concepts" name="Intermediate">
-        <suite class="AboutComplicationAndUnfamiliarity"/>
-        <suite class="AboutCurrying"/>
-        <suite class="CurryingRefactoringPuzzle"/>
-    </package>
 
 </packages>
