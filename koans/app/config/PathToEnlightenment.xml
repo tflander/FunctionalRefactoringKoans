@@ -3,7 +3,7 @@
 
     <package pkg="basics" name="Novice">
 
-        <suite class="AboutSam"/>
+        <suite class="AboutJavaCore"/>
 
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false"/>
@@ -17,6 +17,7 @@
         <suite class="AboutPredicates"/>
         <suite class="AboutRunnable"/>
         <suite class="AboutPrimitives"/>
+        <suite class="AboutSam"/>
     </package>
 
     <package pkg="concepts" name="Intermediate">
