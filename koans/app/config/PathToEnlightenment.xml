@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <packages>
+
+    <package pkg="concepts" name="Intermediate">
+        <suite class="AboutCurrying"/>
+    </package>
+
     <package pkg="basics" name="Novice">
-
-        <suite class="SupplierRefactoringPuzzle"/>
-
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false" />
             <koan name="definitionOfKoanCompletion" displayIncompleteKoanException="false" />
         </suite>
         <suite class="AboutFunctions"/>
         <suite class="AboutSuppliers"/>
+        <suite class="SupplierRefactoringPuzzle"/>
+        <suite class="AboutConsumers"/>
     </package>
 </packages>
