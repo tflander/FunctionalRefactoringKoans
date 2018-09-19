@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <packages>
 
-    <package pkg="concepts" name="Intermediate">
-        <suite class="AboutExceptions"/>
-
-        <suite class="AboutComplicationAndUnfamiliarity"/>
-        <suite class="AboutCurrying"/>
-        <suite class="CurryingRefactoringPuzzle"/>
-        <suite class="AboutPartialFunctions"/>
-    </package>
-
     <package pkg="basics" name="Novice">
 
         <suite class="AboutKoans">
@@ -28,5 +19,13 @@
         <suite class="AboutJavaCore"/>
     </package>
 
+    <package pkg="concepts" name="Intermediate">
+        <suite class="AboutComplicationAndUnfamiliarity"/>
+        <suite class="AboutFunctionComposition"/>
+        <suite class="AboutCurrying"/>
+        <suite class="CurryingRefactoringPuzzle"/>
+        <suite class="AboutPartialFunctions"/>
+        <suite class="AboutExceptions"/>
+    </package>
 
 </packages>
