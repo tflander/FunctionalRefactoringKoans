@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <packages>
 
-    <package pkg="concepts" name="Intermediate">
-        <suite class="AboutComplicationAndUnfamiliarity"/>
-
-        <suite class="AboutCurrying"/>
-        <suite class="CurryingRefactoringPuzzle"/>
-    </package>
-
     <package pkg="basics" name="Novice">
+
+        <suite class="AboutOperators"/>
+        <!--<suite class="AboutRunnable"/>-->
+
         <suite class="AboutKoans">
-            <koan name="findAboutKoansFile" displayIncompleteKoanException="false" />
-            <koan name="definitionOfKoanCompletion" displayIncompleteKoanException="false" />
+            <koan name="findAboutKoansFile" displayIncompleteKoanException="false"/>
+            <koan name="definitionOfKoanCompletion" displayIncompleteKoanException="false"/>
         </suite>
         <suite class="AboutFunctions"/>
         <suite class="AboutSuppliers"/>
         <suite class="SupplierRefactoringPuzzle"/>
         <suite class="AboutConsumers"/>
     </package>
+
+    <package pkg="concepts" name="Intermediate">
+        <suite class="AboutComplicationAndUnfamiliarity"/>
+        <suite class="AboutCurrying"/>
+        <suite class="CurryingRefactoringPuzzle"/>
+    </package>
+
 </packages>
