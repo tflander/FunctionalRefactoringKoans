@@ -2,11 +2,12 @@
 <packages>
 
     <package pkg="concepts" name="Intermediate">
-        <suite class="AboutPartialFunctions"/>
+        <suite class="AboutExceptions"/>
 
         <suite class="AboutComplicationAndUnfamiliarity"/>
         <suite class="AboutCurrying"/>
         <suite class="CurryingRefactoringPuzzle"/>
+        <suite class="AboutPartialFunctions"/>
     </package>
 
     <package pkg="basics" name="Novice">
