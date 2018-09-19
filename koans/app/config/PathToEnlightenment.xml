@@ -3,8 +3,7 @@
 
     <package pkg="basics" name="Novice">
 
-        <suite class="AboutPredicates"/>
-        <!--<suite class="AboutRunnable"/>-->
+        <suite class="AboutRunnable"/>
         <!--<suite class="AboutPrimitives"/>-->
 
         <suite class="AboutKoans">
@@ -16,6 +15,7 @@
         <suite class="SupplierRefactoringPuzzle"/>
         <suite class="AboutConsumers"/>
         <suite class="AboutOperators"/>
+        <suite class="AboutPredicates"/>
     </package>
 
     <package pkg="concepts" name="Intermediate">
