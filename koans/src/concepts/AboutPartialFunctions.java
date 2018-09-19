@@ -51,27 +51,48 @@ public class AboutPartialFunctions {
 
     @Koan
     public void pluggableUsingPreferences() {
+
+        // first we define our preferences
         Map<String, String> preferences = new HashMap<>();
         preferences.put("foo", "bar");
 
+        // now let's make some functions for acting on preference keys:
         BiFunction<String, Map<String, String>, String> concatKeyValue = (str, map) -> str + map.getOrDefault(str, "not found");
         BiFunction<String, Map<String, String>, String> showPrettyKeyValue = (str, map) -> str + ": " + map.getOrDefault(str, "not found");
 
+        // now we can call these functions, but it's kind of ugly to have to pass the preferences every time.
         assertEquals(__, concatKeyValue.apply("foo", preferences));
         assertEquals(__, showPrettyKeyValue.apply("foo", preferences));
+        assertEquals(__, concatKeyValue.apply("invalid", preferences));
+        assertEquals(__, showPrettyKeyValue.apply("invalid", preferences));
 
+        // Previously, we used currying to bury the preferences inside of the function.  That's fine,
+        // but we have to repeat the pattern every time we define some use of a preference key.  Let's use
+        // a partially applied function to make this a bit more generic.
+
+        // Let's define a function that takes preferences, then returns a function that takes a parameter and returns
+        // another function that takes a function that takes the parameter & preferences, then applied the function
+        // and returns a result.  This is a bit to wrap your head around.
         Function<Map<String, String>, Function<String, Function<BiFunction<String, Map<String, String>, String>, String>>> applyOperatorToStringUsingPreferences =
             prefs -> (param -> (f -> f.apply(param, prefs) ));
 
+        // Like the last example, we probably don't want to use this function directly, but we can:
         assertEquals(__, applyOperatorToStringUsingPreferences.apply(preferences).apply("foo").apply(concatKeyValue));
         assertEquals(__, applyOperatorToStringUsingPreferences.apply(preferences).apply("foo").apply(showPrettyKeyValue));
 
-        Function<String, Function<BiFunction<String, Map<String, String>, String>, String>> applyOperatorToString = applyOperatorToStringUsingPreferences.apply(preferences);
-        assertEquals("foobar", applyOperatorToString.apply("foo").apply(concatKeyValue));
-        assertEquals("foo: bar", applyOperatorToString.apply("foo").apply(showPrettyKeyValue));
+        // Instead of using our monster function directly, let's create a simpler function that already knows
+        // about our preferences.  This is a smaller monster:
+        Function<String, Function<BiFunction<String, Map<String, String>, String>, String>> applyOperatorToString =
+                applyOperatorToStringUsingPreferences.apply(preferences);
 
+        // Now we can knit our parameter and operator together in our code:
+        assertEquals(__, applyOperatorToString.apply("foo").apply(concatKeyValue));
+        assertEquals(__, applyOperatorToString.apply("foo").apply(showPrettyKeyValue));
+
+        // This is still ugly (the smaller monster)
+        // we can create different functions to act on different preference parameters without repeating code:
         Function<BiFunction<String, Map<String, String>, String>, String> applyOperatorToFoo = applyOperatorToString.apply("foo");
-        assertEquals("foobar", applyOperatorToFoo.apply(concatKeyValue));
-        assertEquals("foo: bar", applyOperatorToFoo.apply(showPrettyKeyValue));
+        assertEquals(__, applyOperatorToFoo.apply(concatKeyValue));
+        assertEquals(__, applyOperatorToFoo.apply(showPrettyKeyValue));
     }
 }
