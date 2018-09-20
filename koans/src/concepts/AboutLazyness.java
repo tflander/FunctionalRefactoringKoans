@@ -47,17 +47,20 @@ public class AboutLazyness {
         return "foo";
     }
 
-    private void processNumbers(List<Integer> numbers, String slowDataCall) {
+    private void processNumbers(List<Integer> numbers, String dataFromslowDataCall) {
         if (numbers.stream().mapToInt(i -> i).sum() > 30) {
-            slowDataUsed = true;
+            doSomethingWith(dataFromslowDataCall);
         }
     }
 
     private void processNumbersLazy(List<Integer> numbers, Supplier<String> slowDataSupplier) {
         if (numbers.stream().mapToInt(i -> i).sum() > 30) {
-            slowDataSupplier.get();
-            slowDataUsed = true;
+            doSomethingWith(slowDataSupplier.get());
         }
+    }
+
+    private void doSomethingWith(String dataFromslowDataCall) {
+        slowDataUsed = true;
     }
 
 }

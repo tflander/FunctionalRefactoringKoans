@@ -42,7 +42,7 @@ public class AboutPartialFunctions {
 
         // Let's make the function that conforms to the specification of our new module, where the
         // two strings are known, but we need to be able to easily plug in the concatination function:
-        Function<BinaryOperator<String>, String> applyToFooBar = f -> f.apply("foo", "bar");
+        Function<BinaryOperator<String>, String> applyToFooBar = applyOperatorToStrings.apply("foo", "bar");
 
         // Now our code is clean
         assertEquals(__, applyToFooBar.apply(concat));
