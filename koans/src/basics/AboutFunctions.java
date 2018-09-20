@@ -30,7 +30,10 @@ public class AboutFunctions {
      */
     @Koan
     public void sumIntegers() {
-        Function<List<Integer>, Integer> sumIntegers = list -> 0;
+
+        // TODO: finish this code
+        Function<List<Integer>, Integer> sumIntegers = list -> 0;  // TODO: For now stub zero
+
         List<Integer> numbersToSum = Arrays.asList(1, 2, 3);
         assertEquals(6, sumIntegers.apply(numbersToSum));
 
