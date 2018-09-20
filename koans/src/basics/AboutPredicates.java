@@ -37,7 +37,9 @@ public class AboutPredicates {
     public void streamFiltering() {
         Predicate<Integer> lessThanTen = i -> i < 10;
         List<Integer> numbers = Arrays.asList(2, 4, 6, 8, 10, 12);
-        List<Integer> expectedNumbersLessThanTen = Arrays.asList(2, 4, 6, 8);
+
+        // TODO: set expected numbers
+        List<Integer> expectedNumbersLessThanTen = Arrays.asList(/* TODO: list numbers here */);
 
         todo.accept("Here we use our predicate, rather than an anonymous lamba.\n Delete this line to continue.");
         List<Integer> actualNumbersLessThanTen = numbers.stream()
