@@ -3,8 +3,6 @@
 
     <package pkg="basics" name="Novice">
 
-        <suite class="AboutPrimitives"/>
-
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false"/>
             <koan name="definitionOfKoanCompletion" displayIncompleteKoanException="false"/>

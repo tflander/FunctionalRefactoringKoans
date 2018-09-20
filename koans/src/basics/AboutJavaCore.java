@@ -18,10 +18,10 @@ import static com.sandwich.util.Assert.assertEquals;
  */
 public class AboutJavaCore {
 
-    List<String> fruit = Arrays.asList("Pear", "Apple", "Bananna");
-
     @Koan
     public void comparatorOldWay() {
+
+        List<String> fruit = Arrays.asList("Pear", "Apple", "Bananna");
 
         Comparator<String> defaultOrder = new Comparator<String>() {
             @Override
@@ -46,6 +46,8 @@ public class AboutJavaCore {
 
     @Koan
     public void comparatorNewWay() {
+
+        List<String> fruit = Arrays.asList("Pear", "Apple", "Bananna");
 
         Comparator<String> defaultOrder = (s1, s2) -> 0;
         Comparator<String> alphaOrder = (s1, s2) -> s1.compareTo(s2);
