@@ -1,19 +1,30 @@
 package refactoring;
 
 import com.sandwich.koan.Koan;
-import refactoring.StrategyRefactoringPuzzle.Voter.Sex;
+import com.sandwich.util.Assert;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static com.sandwich.util.Assert.assertEquals;
-import static refactoring.StrategyRefactoringPuzzle.Voter.Party.*;
+import static refactoring.StrategyRefactoringPuzzle.Voter.Party.DEMOCRAT;
+import static refactoring.StrategyRefactoringPuzzle.Voter.Party.REPUBLICAN;
+import static refactoring.StrategyRefactoringPuzzle.Voter.Sex.FEMALE;
+import static refactoring.StrategyRefactoringPuzzle.Voter.Sex.MALE;
 
 public class StrategyRefactoringPuzzle {
 
+    Consumer<String> todo = Assert::fail;
+
+    // TODO: You will need four Voter Predicates for this refactor (isFemale, isMale, isRepublican, and isDemocrat)
+    // TODO: all of the Koans pass.  Keep them passing with minimal and sufficient code.
+    // TODO: scroll down and follow the rest of the TODO statements
+
     @Koan
     public void voterCount() {
+        todo.accept("Delete this line and refactor the code by following the TODO comments");
         assertEquals(15, count(voters));
     }
 
@@ -60,6 +71,7 @@ public class StrategyRefactoringPuzzle {
     // TODO: keep this class as-is
     static class Voter {
         public enum Sex {MALE, FEMALE}
+
         public enum Party {DEMOCRAT, REPUBLICAN}
 
         public final Sex sex;
@@ -73,21 +85,21 @@ public class StrategyRefactoringPuzzle {
 
     // TODO: keep this list as-is
     private final List<Voter> voters = Arrays.asList(
-            new Voter(Sex.MALE, REPUBLICAN),
-            new Voter(Sex.MALE, DEMOCRAT),
-            new Voter(Sex.MALE, REPUBLICAN),
-            new Voter(Sex.MALE, DEMOCRAT),
-            new Voter(Sex.MALE, DEMOCRAT),
-            new Voter(Sex.MALE, DEMOCRAT),
-            new Voter(Sex.MALE, REPUBLICAN),
-            new Voter(Sex.FEMALE, DEMOCRAT),
-            new Voter(Sex.FEMALE, REPUBLICAN),
-            new Voter(Sex.FEMALE, DEMOCRAT),
-            new Voter(Sex.FEMALE, REPUBLICAN),
-            new Voter(Sex.FEMALE, REPUBLICAN),
-            new Voter(Sex.FEMALE, REPUBLICAN),
-            new Voter(Sex.FEMALE, REPUBLICAN),
-            new Voter(Sex.FEMALE, REPUBLICAN)
+            new Voter(MALE, REPUBLICAN),
+            new Voter(MALE, DEMOCRAT),
+            new Voter(MALE, REPUBLICAN),
+            new Voter(MALE, DEMOCRAT),
+            new Voter(MALE, DEMOCRAT),
+            new Voter(MALE, DEMOCRAT),
+            new Voter(MALE, REPUBLICAN),
+            new Voter(FEMALE, DEMOCRAT),
+            new Voter(FEMALE, REPUBLICAN),
+            new Voter(FEMALE, DEMOCRAT),
+            new Voter(FEMALE, REPUBLICAN),
+            new Voter(FEMALE, REPUBLICAN),
+            new Voter(FEMALE, REPUBLICAN),
+            new Voter(FEMALE, REPUBLICAN),
+            new Voter(FEMALE, REPUBLICAN)
     );
 
     // TODO: delete this class
@@ -99,17 +111,16 @@ public class StrategyRefactoringPuzzle {
     }
 
     // TODO: delete this class
-    static class FemaleCountVoterStrategy implements CountVoterStrategy
-    {
+    static class FemaleCountVoterStrategy implements CountVoterStrategy {
         @Override
         public boolean shouldCount(Voter voter) {
-            return voter.sex == Sex.FEMALE;
+            return voter.sex == FEMALE;
         }
     }
 
 
     // TODO: delete this class
-    static class CountVoterCompositeStrategy implements CountVoterStrategy{
+    static class CountVoterCompositeStrategy implements CountVoterStrategy {
 
         private final List<CountVoterStrategy> composites;
 
@@ -120,8 +131,8 @@ public class StrategyRefactoringPuzzle {
 
         @Override
         public boolean shouldCount(Voter voter) {
-            for(CountVoterStrategy strategy : composites) {
-                if(!strategy.shouldCount(voter)) {
+            for (CountVoterStrategy strategy : composites) {
+                if (!strategy.shouldCount(voter)) {
                     return false;
                 }
             }
@@ -145,11 +156,10 @@ public class StrategyRefactoringPuzzle {
     }
 
     // TODO: delete this class
-    static class MaleCountVoterStrategy implements CountVoterStrategy
-    {
+    static class MaleCountVoterStrategy implements CountVoterStrategy {
         @Override
         public boolean shouldCount(Voter voter) {
-            return voter.sex == Sex.MALE;
+            return voter.sex == MALE;
         }
     }
 
@@ -208,14 +218,22 @@ public class StrategyRefactoringPuzzle {
         }
     }
 
-    // TODO: replace or repurpose this interface
+    // TODO: keep this function as-is
+    static int count(List<Voter> voters) {
+        return voters.size();
+    }
+
+    // TODO: delete this interface
     static interface CountVoterStrategy {
         boolean shouldCount(Voter voter);
     }
 
-    // TODO: your call if you want to update this function
-    static int count(List<Voter> voters) {
-        return voters.size();
+    // TODO: rename this function to countUsingFilter and return a function that takes a list of voters and
+    // TODO: returns the count.  You need a Voter Predicate as an input parameter countUsingFilter()
+    static int countUsingStrategy(List<Voter> voters, CountVoterStrategy countVoterStrategy) {
+        return (int) voters.stream()
+                .filter(countVoterStrategy::shouldCount)
+                .count();
     }
 
     // TODO: replace the function body without changing the behavior or function signature
@@ -257,13 +275,5 @@ public class StrategyRefactoringPuzzle {
     static int countMaleRepublicans(List<Voter> voters) {
         return countUsingStrategy(voters, new MaleRepublicanCountVoterStrategy());
     }
-
-    // TODO: replace or repurpose this function
-    static int countUsingStrategy(List<Voter> voters, CountVoterStrategy countVoterStrategy) {
-        return (int)voters.stream()
-                .filter(countVoterStrategy::shouldCount)
-                .count();
-    }
-
 
 }
