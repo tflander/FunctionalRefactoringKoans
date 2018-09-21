@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static com.sandwich.util.Assert.assertEquals;
-import static refactoring.StrategyRefactoringPuzzle.Voter.Party.DEMOCRAT;
-import static refactoring.StrategyRefactoringPuzzle.Voter.Party.REPUBLICAN;
-import static refactoring.StrategyRefactoringPuzzle.Voter.Sex.FEMALE;
-import static refactoring.StrategyRefactoringPuzzle.Voter.Sex.MALE;
+import static refactoring.StrategyCompositeRefactoringPuzzle.Voter.Party.DEMOCRAT;
+import static refactoring.StrategyCompositeRefactoringPuzzle.Voter.Party.REPUBLICAN;
+import static refactoring.StrategyCompositeRefactoringPuzzle.Voter.Sex.FEMALE;
+import static refactoring.StrategyCompositeRefactoringPuzzle.Voter.Sex.MALE;
 
-public class StrategyRefactoringPuzzle {
+public class StrategyCompositeRefactoringPuzzle {
 
     Consumer<String> todo = Assert::fail;
 
