@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <packages>
 
-    <package pkg="refactoring" name="Advanced">
-        <suite class="StrategyCompositeRefactoringPuzzle"/>
-    </package>
-
-    <package pkg="basics" name="Novice">
+    <package pkg="introduction" name="Beginner">
 
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false"/>
             <koan name="definitionOfKoanCompletion" displayIncompleteKoanException="false"/>
         </suite>
+
+    </package>
+
+    <package pkg="basics" name="Novice">
+
         <suite class="AboutFunctions"/>
         <suite class="AboutSuppliers"/>
         <suite class="SupplierRefactoringPuzzle"/>
@@ -31,6 +32,10 @@
         <suite class="AboutPartialFunctions"/>
         <suite class="AboutLazyness"/>
         <suite class="AboutExceptions"/>
+    </package>
+
+    <package pkg="refactoring" name="Advanced">
+        <suite class="StrategyCompositeRefactoringPuzzle"/>
     </package>
 
 </packages>
