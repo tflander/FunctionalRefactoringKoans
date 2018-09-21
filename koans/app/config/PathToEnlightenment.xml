@@ -3,12 +3,13 @@
 
     <package pkg="introduction" name="Beginner">
 
-        <suite class="AboutFunctionalInterfaces"/>
+        <suite class="AboutLambdasAndMethodFunctions"/>
 
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false"/>
             <koan name="definitionOfKoanCompletion" displayIncompleteKoanException="false"/>
         </suite>
+        <suite class="AboutFunctionalInterfaces"/>
 
     </package>
 
