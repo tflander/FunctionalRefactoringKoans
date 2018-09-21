@@ -3,6 +3,8 @@
 
     <package pkg="introduction" name="Beginner">
 
+        <suite class="AboutFunctionalInterfaces"/>
+
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false"/>
             <koan name="definitionOfKoanCompletion" displayIncompleteKoanException="false"/>
