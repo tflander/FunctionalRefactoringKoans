@@ -3,13 +3,13 @@
 
     <package pkg="introduction" name="Beginner">
 
-        <suite class="AboutLambdasAndMethodFunctions"/>
-
         <suite class="AboutKoans">
             <koan name="findAboutKoansFile" displayIncompleteKoanException="false"/>
             <koan name="definitionOfKoanCompletion" displayIncompleteKoanException="false"/>
         </suite>
         <suite class="AboutFunctionalInterfaces"/>
+        <suite class="AboutLambdasAndMethodFunctions"/>
+        <suite class="AboutJavaCore"/>
 
     </package>
 
@@ -24,7 +24,6 @@
         <suite class="AboutRunnable"/>
         <suite class="AboutPrimitives"/>
         <suite class="AboutSam"/>
-        <suite class="AboutJavaCore"/>
     </package>
 
     <package pkg="concepts" name="Intermediate">
