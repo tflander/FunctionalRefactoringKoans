@@ -32,7 +32,7 @@ public class AboutFunctionalInterfaces {
     @Koan
     public void function() {
         Function<Integer, String> integerToString = i -> i.toString();
-        assertEquals(integerToString.apply(123), __);
+        assertEquals(integerToString.apply(123), "123");
     }
 
     /**
@@ -42,7 +42,7 @@ public class AboutFunctionalInterfaces {
     @Koan
     public void supplier() {
         Supplier<String> supplyGreeting = () -> "hello";
-        assertEquals(__, supplyGreeting.get());
+        assertEquals("hello", supplyGreeting.get());
     }
 
     /**
@@ -53,7 +53,7 @@ public class AboutFunctionalInterfaces {
     public void consumer() {
         Consumer<String> consumeString = str -> this.lastConsumedString = str;
         consumeString.accept("howdy");
-        assertEquals(__, lastConsumedString);
+        assertEquals("howdy", lastConsumedString);
     }
 
     /**
@@ -64,8 +64,7 @@ public class AboutFunctionalInterfaces {
     public void predicate() {
         Predicate<Integer> isOdd = i -> i % 2 != 0;
 
-        // TODO: change the expectation to get this assertion to pass
-        assertEquals(true, isOdd.test(4));
+        assertEquals(false, isOdd.test(4));
     }
 
     /**
@@ -75,7 +74,7 @@ public class AboutFunctionalInterfaces {
     @Koan
     public void unaryOperator() {
         UnaryOperator<String> doubleString = str -> str + str;
-        assertEquals(__, doubleString.apply("foo"));
+        assertEquals("foofoo", doubleString.apply("foo"));
     }
 
     /**
@@ -85,7 +84,7 @@ public class AboutFunctionalInterfaces {
     @Koan
     public void BinaryOperator() {
         BinaryOperator<String> concatStrings = (s1, s2) -> s1 + s2;
-        assertEquals(__, concatStrings.apply("foo", "bar"));
+        assertEquals("foobar", concatStrings.apply("foo", "bar"));
     }
 
     /**
@@ -105,7 +104,7 @@ public class AboutFunctionalInterfaces {
           return sb.toString();
         };
 
-        assertEquals(__, repeatChar.apply('*', 4));
+        assertEquals("****", repeatChar.apply('*', 4));
     }
 
     /**
@@ -120,9 +119,8 @@ public class AboutFunctionalInterfaces {
 
         UnaryOperator<Integer> incrementViaAutoBoxing = i -> ++i;
         IntUnaryOperator incrementPrimitive = i -> ++i;
-        int replaceMe = -1;
 
-        assertEquals(replaceMe, incrementViaAutoBoxing.apply(1));
-        assertEquals(replaceMe, incrementPrimitive.applyAsInt(1));
+        assertEquals(2, incrementViaAutoBoxing.apply(1));
+        assertEquals(2, incrementPrimitive.applyAsInt(1));
     }
 }

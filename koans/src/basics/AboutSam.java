@@ -47,28 +47,28 @@ public class AboutSam {
     @Koan
     public void stringIdentityViaSimpleSam() {
         SimpleSam stringIdentity = str -> str;
-        assertEquals(__, stringIdentity.foo("bar"));
+        assertEquals("bar", stringIdentity.foo("bar"));
     }
 
     @Koan
     public void stringWrapViaComplexSam() {
         ComplexSam stringIdentityWrapper = str -> ComplexSam.addPrefixAndSuffix(str);
-        assertEquals(__, stringIdentityWrapper.foo("bar"));
+        assertEquals("prefix bar suffix", stringIdentityWrapper.foo("bar"));
 
         ComplexSam doOurOwnThing = str -> "[" + str + "]";
-        assertEquals(__, doOurOwnThing.foo("bar"));
+        assertEquals("[bar]", doOurOwnThing.foo("bar"));
     }
 
     @Koan
     public void notSam() {
-        todo.accept("Understand why this code does not compile.\nDelete this line to continue.");
+//        todo.accept("Understand why this code does not compile.\nDelete this line to continue.");
         // Compile Error: Multiple non-overriding abstract methods found in interface
         // NotSam whoops = str -> str;
     }
 
     @Koan
     public void alsoNotSam() {
-        todo.accept("Understand why this code does not compile.\nDelete this line to continue.");
+//        todo.accept("Understand why this code does not compile.\nDelete this line to continue.");
         // Compile Error: No target method found
         // AlsoNotSam whoops = str -> str;
     }

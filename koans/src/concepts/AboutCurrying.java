@@ -30,10 +30,10 @@ public class AboutCurrying {
     @Koan
     public void basicExample() {
         BinaryOperator<String> joinStrings = (a,b) -> a + ' ' + b;
-        assertEquals(__, joinStrings.apply("hello","world"));
+        assertEquals("hello world", joinStrings.apply("hello","world"));
 
         UnaryOperator<String> sayHello = subject -> joinStrings.apply("hello", subject);
-        assertEquals(__, sayHello.apply("my friend"));
+        assertEquals("hello my friend", sayHello.apply("my friend"));
     }
 
     @Koan
@@ -44,10 +44,10 @@ public class AboutCurrying {
         BiFunction<Map<String, String>, String, String> uncurriedFunction = (preferences, param) ->
                 param + "=" + preferences.getOrDefault(param, "");
 
-        assertEquals("__", uncurriedFunction.apply(myPreferences, "foo"));
+        assertEquals("foo=bar", uncurriedFunction.apply(myPreferences, "foo"));
 
         Function<String, String> curriedFunction = createFunctionWithPreferences(myPreferences);
-        assertEquals("__", curriedFunction.apply("foo"));
+        assertEquals("foo=bar", curriedFunction.apply("foo"));
     }
 
     private Function<String, String> createFunctionWithPreferences(Map<String, String> preferences) {

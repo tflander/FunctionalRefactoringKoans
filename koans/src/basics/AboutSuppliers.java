@@ -24,7 +24,7 @@ public class AboutSuppliers {
 
         excitedCowSpeak();
 
-        Supplier<String> cowSpeak = () -> __;
+        Supplier<String> cowSpeak = () -> "moo";
         assertEquals("moo", cowSpeak.get());
     }
 
@@ -35,11 +35,8 @@ public class AboutSuppliers {
      */
     @Koan
     public void supplyComplexSpeakFunction() {
-        Supplier<String> excitedCowSpeak = () -> __;
+        Supplier<String> excitedCowSpeak = this::excitedCowSpeak;
         Assert.assertTrue(excitedCowSounds.contains(excitedCowSpeak.get()));
-
-        // HINT:
-        Supplier<String> methodReference = this::excitedCowSpeak;
     }
 
     private String excitedCowSpeak() {

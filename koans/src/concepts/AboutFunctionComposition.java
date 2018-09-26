@@ -22,18 +22,16 @@ public class AboutFunctionComposition {
     @Koan
     public void predicateReview() {
 
-        // TODO: fix assertion expectations
-        assertEquals(false, isLessThan10.test(valueThatIsTrueForAllPredicates));
-        assertEquals(false, isGreaterThan2.test(valueThatIsTrueForAllPredicates));
-        assertEquals(false, isOdd.test(valueThatIsTrueForAllPredicates));
+        assertEquals(true, isLessThan10.test(valueThatIsTrueForAllPredicates));
+        assertEquals(true, isGreaterThan2.test(valueThatIsTrueForAllPredicates));
+        assertEquals(true, isOdd.test(valueThatIsTrueForAllPredicates));
     }
 
     @Koan
     public void composedPredicate() {
         Predicate<Integer> isOddNumberBetween3and9 = isLessThan10.and(isGreaterThan2.and(isOdd));
 
-        // TODO: fix assertion expectation
-        assertEquals(false, isOddNumberBetween3and9.test(valueThatIsTrueForAllPredicates));
+        assertEquals(true, isOddNumberBetween3and9.test(valueThatIsTrueForAllPredicates));
 
     }
 
@@ -43,19 +41,18 @@ public class AboutFunctionComposition {
 
         Predicate<Integer> isEvenNumberBetween4and8 = isGreaterThan2.and(isLessThan10.and(isOdd.negate()));
 
-        // TODO: fix assertion expectation
-        assertEquals(false, isEvenNumberBetween4and8.test(evenValueThatPassesOtherTwoPredicates));
+        assertEquals(true, isEvenNumberBetween4and8.test(evenValueThatPassesOtherTwoPredicates));
     }
 
     @Koan
     public void functionComposition() {
         String testString = "JAVA";
 
-        assertEquals(__, dropFirstCharacter.apply(testString));
-        assertEquals(__, toLowerCase.apply(testString));
+        assertEquals("AVA", dropFirstCharacter.apply(testString));
+        assertEquals("java", toLowerCase.apply(testString));
         Function<String, String> dropFirstCharacterAndConvertToLowerCase = dropFirstCharacter.andThen(toLowerCase);
 
-        assertEquals(__, dropFirstCharacterAndConvertToLowerCase.apply(testString));
+        assertEquals("ava", dropFirstCharacterAndConvertToLowerCase.apply(testString));
     }
 
 

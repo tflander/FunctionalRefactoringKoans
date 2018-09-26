@@ -43,10 +43,10 @@ public class AboutJavaCore {
         };
 
         fruit.sort(defaultOrder);
-        assertEquals(__, fruit.get(0));
+        assertEquals("Pear", fruit.get(0));
 
         fruit.sort(alphaOrder);
-        assertEquals(__, fruit.get(0));
+        assertEquals("Apple", fruit.get(0));
     }
 
     /**
@@ -66,7 +66,7 @@ public class AboutJavaCore {
             }
         });
 
-        assertEquals(__, fruit.get(0));
+        assertEquals("Pear", fruit.get(0));
 
         fruit.sort(new Comparator<String>() {
             @Override
@@ -75,7 +75,7 @@ public class AboutJavaCore {
             }
         });
 
-        assertEquals(__, fruit.get(0));
+        assertEquals("Apple", fruit.get(0));
     }
 
     /**
@@ -91,10 +91,10 @@ public class AboutJavaCore {
         Comparator<String> alphaOrder = (s1, s2) -> s1.compareTo(s2);
 
         fruit.sort(defaultOrder);
-        assertEquals(__, fruit.get(0));
+        assertEquals("Pear", fruit.get(0));
 
         fruit.sort(alphaOrder);
-        assertEquals(__, fruit.get(0));
+        assertEquals("Apple", fruit.get(0));
     }
 
     /**
@@ -107,9 +107,9 @@ public class AboutJavaCore {
         List<String> fruit = Arrays.asList("Pear", "Apple", "Bananna");
 
         fruit.sort((s1, s2) -> 0);
-        assertEquals(__, fruit.get(0));
+        assertEquals("Pear", fruit.get(0));
 
         fruit.sort((s1, s2) -> s1.compareTo(s2));
-        assertEquals(__, fruit.get(0));
+        assertEquals("Apple", fruit.get(0));
     }
 }

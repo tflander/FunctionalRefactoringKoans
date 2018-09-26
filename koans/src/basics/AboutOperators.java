@@ -21,7 +21,7 @@ public class AboutOperators {
     public void stringDoublerUnaryOperator() {
         UnaryOperator<String> doubler = str -> str + str;
 
-        assertEquals(__, doubler.apply("foo"));
+        assertEquals("foofoo", doubler.apply("foo"));
     }
 
     /**
@@ -31,7 +31,7 @@ public class AboutOperators {
     public void stringConcatBinaryOperator() {
         BinaryOperator<String> concat = (s1, s2) -> s1 + s2;
 
-        assertEquals(__, concat.apply("foo", "bar"));
+        assertEquals("foobar", concat.apply("foo", "bar"));
     }
 
 }

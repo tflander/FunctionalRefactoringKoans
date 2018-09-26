@@ -23,9 +23,8 @@ public class AboutPredicates {
 
         Predicate<Integer> lessThanTen = i -> i < 10;
 
-        // Fix the assertions
-        assertEquals(false, lessThanTen.test(3));
-        assertEquals(true, lessThanTen.test(30));
+        assertEquals(true, lessThanTen.test(3));
+        assertEquals(false, lessThanTen.test(30));
     }
 
     /**
@@ -38,10 +37,8 @@ public class AboutPredicates {
         Predicate<Integer> lessThanTen = i -> i < 10;
         List<Integer> numbers = Arrays.asList(2, 4, 6, 8, 10, 12);
 
-        // TODO: set expected numbers
-        List<Integer> expectedNumbersLessThanTen = Arrays.asList(/* TODO: list numbers here */);
+        List<Integer> expectedNumbersLessThanTen = Arrays.asList(2, 4, 6, 8);
 
-        todo.accept("Here we use our predicate, rather than an anonymous lamba.\n Delete this line to continue.");
         List<Integer> actualNumbersLessThanTen = numbers.stream()
                 .filter(lessThanTen)
                 .collect(Collectors.toList());

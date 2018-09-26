@@ -26,7 +26,7 @@ public class AboutLazyness {
         slowDataUsed = false;
 
         processNumbers(numbers, slowDataCall());
-        todo.accept("Contemplate why we made the slow data call, but didn't use the data.\nDelete this line to continue.");
+//        todo.accept("Contemplate why we made the slow data call, but didn't use the data.\nDelete this line to continue.");
         assertTrue(slowDataCalled);
         assertFalse(slowDataUsed);
     }
@@ -37,7 +37,7 @@ public class AboutLazyness {
         slowDataUsed = false;
 
         processNumbersLazy(numbers, () -> slowDataCall());
-        todo.accept("Understand why we didn't have to make the call to get the slow data.\nDelete this line to continue.");
+//        todo.accept("Understand why we didn't have to make the call to get the slow data.\nDelete this line to continue.");
         assertFalse(slowDataCalled);
         assertFalse(slowDataUsed);
     }

@@ -30,13 +30,12 @@ public class AboutPrimitives {
 
         // Do this instead
         IntFunction<String> numberMessage = i -> "Number: " + i;
-        assertEquals(__, numberMessage.apply(10));
+        assertEquals("Number: 10", numberMessage.apply(10));
     }
 
     @Koan
     public void autoboxingOverhead() {
 
-        todo.accept("Consider the following two functions.\nBoth are very fast, but the second one has overhead in auto-boxing the int to an Integer.\nDelete this line to continue");
         IntFunction<String> primitiveIntMessage = i -> "Number: " + i;
         Function<Integer, String> objectIntegersMessage = i -> "Number: " + i;
 
@@ -46,14 +45,14 @@ public class AboutPrimitives {
         List<Integer> objectTimes = new ArrayList<>();
 
         // TODO: When you are done with this koan, comment out the rest of these lines because they are slow
-        gatherTimings(primitiveIntMessage, objectIntegersMessage, primitiveTimes, objectTimes);
-        displayTimings(primitiveTimes, objectTimes);
-
-        int maxTimeUsingPrimitives = primitiveTimes.stream().mapToInt(i -> i).max().getAsInt();
-        int minTimeUsingIntegers = objectTimes.stream().mapToInt(i -> i).min().getAsInt();
-
-        // Verify the max time using primitives is less than the min time using integers
-        assertTrue(maxTimeUsingPrimitives < minTimeUsingIntegers);
+//        gatherTimings(primitiveIntMessage, objectIntegersMessage, primitiveTimes, objectTimes);
+//        displayTimings(primitiveTimes, objectTimes);
+//
+//        int maxTimeUsingPrimitives = primitiveTimes.stream().mapToInt(i -> i).max().getAsInt();
+//        int minTimeUsingIntegers = objectTimes.stream().mapToInt(i -> i).min().getAsInt();
+//
+//        // Verify the max time using primitives is less than the min time using integers
+//        assertTrue(maxTimeUsingPrimitives < minTimeUsingIntegers);
 
     }
 

@@ -16,31 +16,22 @@ public class SupplierRefactoringPuzzle {
 
     Consumer<String> todo = Assert::fail;
 
-    static abstract class Animal {
-        public abstract String speak();
-    }
+    static class Animal {
+        private final Supplier<String> speakFunction;
 
-    static class Cow extends Animal {
-
-        @Override
-        public String speak() {
-            return "moo";
+        public Animal(Supplier<String> speakFunction) {
+            this.speakFunction = speakFunction;
         }
-    }
 
-    static class Pig extends Animal {
-
-        @Override
         public String speak() {
-            return "oink";
-        }
+            return speakFunction.get();
+        };
     }
 
     @Koan
     public void codeToRefactor() {
-        todo.accept("Refactor the code to use a supplier instead of polymorphism.\nDelete the Cow and Pig sub-classes, then make Animal not abstract.\nHave a constructor for animal that takes a speakFunction.  Use that function in the speak method.\nDon't forget to delete this 'todo' line.");
-        Animal cow = new Cow();
-        Animal pig = new Pig();
+        Animal cow = new Animal(() -> "moo");
+        Animal pig = new Animal(() -> "oink");
         assertEquals("moo", cow.speak());
         assertEquals("oink", pig.speak());
     }

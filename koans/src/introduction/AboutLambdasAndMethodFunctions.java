@@ -38,7 +38,7 @@ public class AboutLambdasAndMethodFunctions {
     @Koan
     public void aboutMethods() {
         Foo myFoo = new Foo();
-        assertEquals(__, myFoo.repeatStarsMethod(4));
+        assertEquals("****", myFoo.repeatStarsMethod(4));
     }
 
     /**
@@ -47,7 +47,7 @@ public class AboutLambdasAndMethodFunctions {
      */
     @Koan
     public void aboutStaticMethods() {
-        assertEquals(__, Foo.repeatStarsStaticMethod(4));
+        assertEquals("****", Foo.repeatStarsStaticMethod(4));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AboutLambdasAndMethodFunctions {
     @Koan
     public void aboutLambdas() {
         UnaryOperator<String> doubleString = str -> str + str;
-        assertEquals(__, doubleString.apply("foo"));
+        assertEquals("foofoo", doubleString.apply("foo"));
     }
 
     /**
@@ -82,7 +82,7 @@ public class AboutLambdasAndMethodFunctions {
         // The method reference is short-hand where the count is implied by the method signature.
         Function<Integer, String> repeatStarsMethodReference = myFoo::repeatStarsMethod;
 
-        assertEquals(__, repeatStarsMethodReference.apply(4));
+        assertEquals("****", repeatStarsMethodReference.apply(4));
     }
 
     /**
@@ -97,7 +97,7 @@ public class AboutLambdasAndMethodFunctions {
         // The method reference is short-hand where the count is implied by the method signature.
         Function<Integer, String> repeatStarsMethodReference = Foo::repeatStarsStaticMethod;
 
-        assertEquals(__, repeatStarsMethodReference.apply(4));
+        assertEquals("****", repeatStarsMethodReference.apply(4));
     }
 
     /**
@@ -107,7 +107,7 @@ public class AboutLambdasAndMethodFunctions {
     public void aboutClassInstanceMethodReferences() {
         UnaryOperator<String> toUppercase = this::uppercaseString;
 
-        assertEquals(__, toUppercase.apply("foo"));
+        assertEquals("FOO", toUppercase.apply("foo"));
     }
 
 }

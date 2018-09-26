@@ -50,7 +50,6 @@ public class AboutExceptions {
 
     @Koan
     public void exceptions() {
-        todo.accept("Verify the commented out code does not compile.\nFunctional interfaces do not define methods that throw checked exceptions, so we are not allowed to throw them.\nDelete this line to continue.");
         // Does not compile:  Unhandled Exception
 //         UnaryOperator<String> preferenceLookup = this::getPreference;
     }
@@ -63,7 +62,7 @@ public class AboutExceptions {
     public void worstApproach() {
         StringOperatorWithCheckedException preferenceLookup = this::getPreference;
         try {
-            assertEquals(__, preferenceLookup.apply("foo"));
+            assertEquals("bar", preferenceLookup.apply("foo"));
         } catch (Exception e) {
             fail("this should not have happened");
         }
@@ -76,7 +75,7 @@ public class AboutExceptions {
     @Koan
     public void betterApproach() {
          UnaryOperator<String> preferenceLookup = this::getPreferenceUncheckedWrapper;
-        assertEquals(__, preferenceLookup.apply("foo"));
+        assertEquals("bar", preferenceLookup.apply("foo"));
     }
 
     /**
@@ -87,6 +86,6 @@ public class AboutExceptions {
     @Koan
     public void bestApproach() {
         UnaryOperator<String> preferenceLookup = this::getPreferenceUnchecked;
-        assertEquals(__, preferenceLookup.apply("foo"));
+        assertEquals("bar", preferenceLookup.apply("foo"));
     }
 }

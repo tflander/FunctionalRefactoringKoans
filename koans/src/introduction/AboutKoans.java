@@ -10,12 +10,12 @@ public class AboutKoans {
 
     @Koan
     public void findAboutKoansFile() {
-        fail("delete this line to advance");
+//        fail("delete this line to advance");
     }
 
     @Koan
     public void definitionOfKoanCompletion() {
-        boolean koanIsComplete = false;
+        boolean koanIsComplete = true;
         if (!koanIsComplete) {
             fail("what if koanIsComplete variable was true?");
         }
@@ -24,7 +24,7 @@ public class AboutKoans {
     @Koan
     public void updatingPlaceHolders() {
         // replace the double-underscore placeholder to make the following assertion true
-        assertEquals("foo", __);
+        assertEquals("foo", "foo");
     }
 
 }

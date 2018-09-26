@@ -20,10 +20,7 @@ public class AboutRunnable {
      */
     @Koan
     public void runnable() {
-
-        todo.accept("behold the glory of the nothing.\nDelete this line to continue.");
         Runnable doNothing = () -> {};
-
         doNothing.run();
     }
 
@@ -35,7 +32,6 @@ public class AboutRunnable {
 
         Consumer<String> printString = str -> System.out.println(str);
 
-        todo.accept("We can build a list of Runnables as commands that can be passed around and run on-demand.\nDelete this line to continue.");
         List<Runnable> lazyCommands = new ArrayList<>();
         lazyCommands.add(() -> printString.accept("foo"));
         lazyCommands.add(() -> printString.accept("bar"));

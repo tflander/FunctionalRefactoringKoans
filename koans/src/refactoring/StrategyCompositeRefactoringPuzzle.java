@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import static com.sandwich.util.Assert.assertEquals;
 import static refactoring.StrategyCompositeRefactoringPuzzle.Voter.Party.DEMOCRAT;
@@ -18,13 +19,13 @@ public class StrategyCompositeRefactoringPuzzle {
 
     Consumer<String> todo = Assert::fail;
 
-    // TODO: You will need four Voter Predicates for this refactor (isFemale, isMale, isRepublican, and isDemocrat)
-    // TODO: all of the Koans pass.  Keep them passing with minimal and sufficient code.
-    // TODO: scroll down and follow the rest of the TODO statements
+    static Predicate<Voter> isFemale = voter -> voter.sex == FEMALE;
+    static Predicate<Voter> isMale = voter -> voter.sex == MALE;
+    static Predicate<Voter> isRepublican = voter -> voter.party == REPUBLICAN;
+    static Predicate<Voter> isDemocrat = voter -> voter.party == DEMOCRAT;
 
     @Koan
     public void voterCount() {
-        todo.accept("Delete this line and refactor the code by following the TODO comments");
         assertEquals(15, count(voters));
     }
 
@@ -68,7 +69,6 @@ public class StrategyCompositeRefactoringPuzzle {
         assertEquals(3, countMaleRepublicans(voters));
     }
 
-    // TODO: keep this class as-is
     static class Voter {
         public enum Sex {MALE, FEMALE}
 
@@ -83,7 +83,6 @@ public class StrategyCompositeRefactoringPuzzle {
         }
     }
 
-    // TODO: keep this list as-is
     private final List<Voter> voters = Arrays.asList(
             new Voter(MALE, REPUBLICAN),
             new Voter(MALE, DEMOCRAT),
@@ -102,178 +101,46 @@ public class StrategyCompositeRefactoringPuzzle {
             new Voter(FEMALE, REPUBLICAN)
     );
 
-    // TODO: delete this class
-    static class DemocratCountVoterStrategy implements CountVoterStrategy {
-        @Override
-        public boolean shouldCount(Voter voter) {
-            return voter.party == DEMOCRAT;
-        }
-    }
-
-    // TODO: delete this class
-    static class FemaleCountVoterStrategy implements CountVoterStrategy {
-        @Override
-        public boolean shouldCount(Voter voter) {
-            return voter.sex == FEMALE;
-        }
-    }
-
-
-    // TODO: delete this class
-    static class CountVoterCompositeStrategy implements CountVoterStrategy {
-
-        private final List<CountVoterStrategy> composites;
-
-        public CountVoterCompositeStrategy(List<CountVoterStrategy> composites) {
-
-            this.composites = composites;
-        }
-
-        @Override
-        public boolean shouldCount(Voter voter) {
-            for (CountVoterStrategy strategy : composites) {
-                if (!strategy.shouldCount(voter)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-    }
-
-    // TODO: delete this class
-    static class FemaleDemocratCountVoterStrategy extends CountVoterCompositeStrategy {
-
-        private static List<CountVoterStrategy> composites = new ArrayList<>();
-
-        static {
-            composites.add(new FemaleCountVoterStrategy());
-            composites.add(new DemocratCountVoterStrategy());
-        }
-
-        public FemaleDemocratCountVoterStrategy() {
-            super(composites);
-        }
-    }
-
-    // TODO: delete this class
-    static class MaleCountVoterStrategy implements CountVoterStrategy {
-        @Override
-        public boolean shouldCount(Voter voter) {
-            return voter.sex == MALE;
-        }
-    }
-
-    // TODO: delete this class
-    static class FemaleRepublicanCountVoterStrategy extends CountVoterCompositeStrategy {
-
-        private static List<CountVoterStrategy> composites = new ArrayList<>();
-
-        static {
-            composites.add(new FemaleCountVoterStrategy());
-            composites.add(new RepublicanCountVoterStrategy());
-        }
-
-        public FemaleRepublicanCountVoterStrategy() {
-            super(composites);
-        }
-    }
-
-
-    // TODO: delete this class
-    static class RepublicanCountVoterStrategy implements CountVoterStrategy {
-
-        @Override
-        public boolean shouldCount(Voter voter) {
-            return voter.party == REPUBLICAN;
-        }
-    }
-
-    // TODO: delete this class
-    static class MaleDemocratCountVoterStrategy extends CountVoterCompositeStrategy {
-
-        private static List<CountVoterStrategy> composites = new ArrayList<>();
-
-        static {
-            composites.add(new MaleCountVoterStrategy());
-            composites.add(new DemocratCountVoterStrategy());
-        }
-
-        public MaleDemocratCountVoterStrategy() {
-            super(composites);
-        }
-    }
-
-    // TODO: delete this class
-    static class MaleRepublicanCountVoterStrategy extends CountVoterCompositeStrategy {
-
-        private static List<CountVoterStrategy> composites = new ArrayList<>();
-
-        static {
-            composites.add(new MaleCountVoterStrategy());
-            composites.add(new RepublicanCountVoterStrategy());
-        }
-
-        public MaleRepublicanCountVoterStrategy() {
-            super(composites);
-        }
-    }
-
-    // TODO: keep this function as-is
     static int count(List<Voter> voters) {
         return voters.size();
     }
 
-    // TODO: delete this interface
-    static interface CountVoterStrategy {
-        boolean shouldCount(Voter voter);
-    }
-
-    // TODO: rename this function to countUsingFilter and return a function that takes a list of voters and
-    // TODO: returns the count.  You need a Voter Predicate as an input parameter countUsingFilter()
-    static int countUsingStrategy(List<Voter> voters, CountVoterStrategy countVoterStrategy) {
+    static int countUsingFilter(List<Voter> voters, Predicate<Voter> filter) {
         return (int) voters.stream()
-                .filter(countVoterStrategy::shouldCount)
+                .filter(filter)
                 .count();
     }
 
-    // TODO: replace the function body without changing the behavior or function signature
     static int countMales(List<Voter> voters) {
-        return countUsingStrategy(voters, new MaleCountVoterStrategy());
+        return countUsingFilter(voters, isMale);
     }
 
-    // TODO: replace the function body without changing the behavior or function signature
     static int countFemales(List<Voter> voters) {
-        return countUsingStrategy(voters, new FemaleCountVoterStrategy());
+        return countUsingFilter(voters, isFemale);
     }
 
-    // TODO: replace the function body without changing the behavior or function signature
     static int countDemocrats(List<Voter> voters) {
-        return countUsingStrategy(voters, new DemocratCountVoterStrategy());
+        return countUsingFilter(voters, isDemocrat);
     }
 
-    // TODO: replace the function body without changing the behavior or function signature
     static int countRepublicans(List<Voter> voters) {
-        return countUsingStrategy(voters, new RepublicanCountVoterStrategy());
+        return countUsingFilter(voters, isRepublican);
     }
 
-    // TODO: replace the function body without changing the behavior or function signature
     static int countFemaleDemocrats(List<Voter> voters) {
-        return countUsingStrategy(voters, new FemaleDemocratCountVoterStrategy());
+        return countUsingFilter(voters, isFemale.and(isDemocrat));
     }
 
-    // TODO: replace the function body without changing the behavior or function signature
     static int countMaleDemocrats(List<Voter> voters) {
-        return countUsingStrategy(voters, new MaleDemocratCountVoterStrategy());
+        return countUsingFilter(voters, isMale.and(isDemocrat));
     }
 
-    // TODO: replace the function body without changing the behavior or function signature
     static int countFemaleRepublicans(List<Voter> voters) {
-        return countUsingStrategy(voters, new FemaleRepublicanCountVoterStrategy());
+        return countUsingFilter(voters, isFemale.and(isRepublican));
     }
 
-    // TODO: replace the function body without changing the behavior or function signature
     static int countMaleRepublicans(List<Voter> voters) {
-        return countUsingStrategy(voters, new MaleRepublicanCountVoterStrategy());
+        return countUsingFilter(voters, isMale.and(isRepublican));
     }
 
 }

@@ -20,7 +20,7 @@ public class AboutFunctions {
      */
     @Koan
     public void conversionFunction() {
-        Function<Integer, String> integerAsString = i -> __;
+        Function<Integer, String> integerAsString = i -> i.toString();
         assertEquals("123", integerAsString.apply(123));
     }
 
@@ -31,13 +31,8 @@ public class AboutFunctions {
     @Koan
     public void sumIntegers() {
 
-        // TODO: finish this code
-        Function<List<Integer>, Integer> sumIntegers = list -> 0;  // TODO: For now stub zero
-
+        Function<List<Integer>, Integer> sumIntegers = list -> list.stream().mapToInt(i->i).sum();
         List<Integer> numbersToSum = Arrays.asList(1, 2, 3);
         assertEquals(6, sumIntegers.apply(numbersToSum));
-
-        // hint
-        assertEquals(6, numbersToSum.stream().mapToInt(i->i).sum());
     }
 }

@@ -30,7 +30,7 @@ public class AboutConsumers {
     public void consumeLogMessage() {
 
         Consumer<String> messageLogger = message -> {
-            lastLoggedMessage = __;
+            lastLoggedMessage = message;
         };
 
         messageLogger.accept("testing");
@@ -49,9 +49,9 @@ public class AboutConsumers {
     @Koan
     public void dispatchMessage() {
         Consumer<String> messageDispatcher = message -> {
-            lastTextMessage = "Text: " + __;
-            lastEmailMessage = "Email: " + __;
-            lastTweet = "Tweet: " + __;
+            lastTextMessage = "Text: " + message;
+            lastEmailMessage = "Email: " + message;
+            lastTweet = "Tweet: " + message;
         };
 
         messageDispatcher.accept("testing");
@@ -68,9 +68,9 @@ public class AboutConsumers {
     @Koan
     public void flexibleDispatcher() {
         List<Consumer<String>> deliveryMethods = Arrays.asList(
-                message -> lastTextMessage = "New Text: " + __,
-                message -> lastEmailMessage = "New Email: " + __,
-                message -> lastTweet = "New Tweet: " + __
+                message -> lastTextMessage = "New Text: " + message,
+                message -> lastEmailMessage = "New Email: " + message,
+                message -> lastTweet = "New Tweet: " + message
         );
 
         deliveryMethods.forEach(deliveryMethod -> deliveryMethod.accept("new message"));
@@ -110,7 +110,7 @@ public class AboutConsumers {
      */
     private Consumer<String> deliver(String deliveryMethod, String fieldName) {
         return message -> {
-            String messageToSend = "Awesome " + deliveryMethod + ": " + __;
+            String messageToSend = "Awesome " + deliveryMethod + ": " + message;
             Class<AboutConsumers> aboutConsumersClass = AboutConsumers.class;
             try {
                 Field declaredField = aboutConsumersClass.getDeclaredField(fieldName);
